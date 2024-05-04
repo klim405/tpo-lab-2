@@ -1,8 +1,12 @@
 package org.klim405;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FunctionSystemTest {
     @Test
@@ -17,5 +21,13 @@ public class FunctionSystemTest {
         assertEquals(-63.866, fs.calcDouble(-4.001), 0.001);
         assertEquals(-64.798, fs.calcDouble(-3.876), 0.001);
         assertEquals(-167.697, fs.calcDouble(-2.124), 0.001);
+    }
+
+    @ParameterizedTest(name = "f({0})")
+    @DisplayName("Проверка точек разрыва косинуса")
+    @ValueSource(doubles = {0.0, 1.0})
+    void testPoints(double x) {
+        FunctionSystem fs = new FunctionSystem();
+        assertThrows(ArithmeticException.class, () -> fs.calcDouble(x));
     }
 }
