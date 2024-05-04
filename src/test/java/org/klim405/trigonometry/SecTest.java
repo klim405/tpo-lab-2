@@ -18,6 +18,7 @@ public class SecTest {
         BigDecimal bigDecimal = new BigDecimal(value);
         Cos mockCos = Mockito.mock(Cos.class);
         when(mockCos.calc(bigDecimal)).thenReturn(BigDecimal.valueOf(Math.cos(value)));
+        when(mockCos.calcDouble(bigDecimal)).thenReturn(Math.cos(value));
 
         Sec sec = new Sec(mockCos);
         assertEquals(1 / Math.cos(value), sec.calc(bigDecimal).doubleValue(), 0.00001);
