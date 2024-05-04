@@ -1,3 +1,4 @@
-x,n,ln_x,ln_n,log_x,log_accuracy,ln_accuracy
+x,n,lnX,lnN,logX,logAccuracy,lnAccuracy
 8,2,2.07944,0.693147,3,0.001,0.001
 1,8,0,2.07944,0,0.001,0.001
+1030,2,6.93731,0.693147,10.000843,0.01,0.001

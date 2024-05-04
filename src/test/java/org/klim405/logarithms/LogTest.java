@@ -13,17 +13,28 @@ import static org.mockito.Mockito.when;
 
 public class LogTest {
 
-    @DisplayName("Проверка log")
+    @DisplayName("Проверка log c моковым ln")
     @ParameterizedTest
     @CsvFileSource(resources = "/logarithms/log.csv", numLinesToSkip = 1)
     public void testLogWithLnMock(
-            BigDecimal x, int n, BigDecimal ln_x, BigDecimal ln_n, double log_x, double log_accuracy) {
+            BigDecimal x, int n, BigDecimal lnX, BigDecimal lnN, double logX, double logAccuracy) {
         BigDecimal bigN = BigDecimal.valueOf(n);
         Ln mockLn = Mockito.mock(Ln.class);
-        when(mockLn.calc(x)).thenReturn(ln_x);
-        when(mockLn.calc(bigN)).thenReturn(ln_n);
+        when(mockLn.calc(x)).thenReturn(lnX);
+        when(mockLn.calc(bigN)).thenReturn(lnN);
 
         Log log = new Log(mockLn, n);
-        assertEquals(log.calcDouble(x), log_x, log_accuracy);
+        assertEquals(logX, log.calc(x).doubleValue(), logAccuracy);
+    }
+
+    @DisplayName("Проверка log")
+    @ParameterizedTest
+    @CsvFileSource(resources = "/logarithms/log.csv", numLinesToSkip = 1)
+    public void testLog(
+            double x, int n, BigDecimal lnX, BigDecimal lnN, double logX, double logAccuracy) {
+
+        Log log = new Log(new Ln(logAccuracy), n);
+        double res = Math.log10(x) / Math.log10(n);
+        assertEquals(res, log.calcDouble(x), logAccuracy);
     }
 }

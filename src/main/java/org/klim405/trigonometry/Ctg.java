@@ -1,14 +1,13 @@
 package org.klim405.trigonometry;
 
 import org.klim405.IterativeFunc;
-import org.klim405.MathFunc;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Ctg extends IterativeFunc {
-    private final MathFunc sin;
-    private final MathFunc cos;
+    private final Sin sin;
+    private final Cos cos;
 
     public Ctg(int maxIterations, double accuracy) {
         super(maxIterations, accuracy);
@@ -28,7 +27,7 @@ public class Ctg extends IterativeFunc {
         cos = new Cos();
     }
 
-    public Ctg(MathFunc sin, MathFunc cos) {
+    public Ctg(Sin sin, Cos cos) {
         super();
         this.sin = sin;
         this.cos = cos;

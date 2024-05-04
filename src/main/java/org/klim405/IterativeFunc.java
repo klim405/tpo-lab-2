@@ -28,8 +28,13 @@ public abstract class IterativeFunc implements MathFunc {
     }
 
     @Override
+    public BigDecimal calc(double x) {
+        return calc(BigDecimal.valueOf(x));
+    }
+
+    @Override
     public double calcDouble(double x) {
-        return calc(BigDecimal.valueOf(x)).doubleValue();
+        return calcDouble(BigDecimal.valueOf(x));
     }
 
     @Override
